@@ -14,7 +14,7 @@ gbf-raid-server
 
 ```bash
 # export GBFR_KEYS=consumer_key:consumer_secret:access_token_key:access_token_secret
-# node app.js
+# node --experimental-modules app.mjs
 ```
 
 ```js
