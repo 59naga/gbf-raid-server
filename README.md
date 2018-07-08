@@ -21,7 +21,7 @@ gbf-raid-server
 import { createServer } from 'http';
 import createIoServer from 'socket.io';
 import createIoClient from 'socket.io-client';
-import createRaidServer, { parseAll } from 'gbf-raid-server';
+import createRaidServer, { parseAll } from 'gbf-raid-server/mjs';
 
 const port = process.env.PORT || 8080;
 
@@ -42,6 +42,15 @@ server.listen(port, async () => {
       // {id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', createdAt: '2018-07-06 10:26:56'}
     });
 });
+```
+
+インストール
+---
+
+```bash
+npm install gbf-raid-server
+# or
+yarn add gbf-raid-server
 ```
 
 API
