@@ -1,0 +1,43 @@
+{
+  "name": "gbf-raid-server",
+  "version": "0.0.0",
+  "main": "lib",
+  "scripts": {
+    "postinstall": "path-exists flow-typed || flow-typed install -s -o --ignoreDeps peer",
+    "start": "mocha --watch",
+    "test": "mocha",
+    "lint": "eslint src test",
+    "flow": "flow",
+    "build": "babel src --out-dir lib --source-maps && flow-copy-source -v src lib"
+  },
+  "dependencies": {
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0-beta.51",
+    "@babel/polyfill": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/register": "^7.0.0-beta.52",
+    "babel-eslint": "^8.2.5",
+    "babel-preset-power-assert": "^3.0.0-beta.1",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "flow-bin": "^0.76.0",
+    "flow-copy-source": "^2.0.1",
+    "flow-typed": "^2.4.0",
+    "mocha": "^5.2.0",
+    "path-exists-cli": "^1.0.0",
+    "power-assert": "^1.6.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
+  },
+  "repository": "git@github.com:59naga/gbf-raid-server.git",
+  "author": "59naga <i59naga@icloud.com>",
+  "license": "MIT"
+}

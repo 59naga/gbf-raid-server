@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+src/declares.js
+
+[lints]
+
+[options]
+
+[strict]
