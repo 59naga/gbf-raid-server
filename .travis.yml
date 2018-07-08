@@ -1,5 +1,8 @@
 # Quick boot options
 sudo: false
+cache:
+  directories:
+    - node_modules
 
 # Ignore version tags
 branches:
@@ -12,6 +15,8 @@ node_js:
   - 8
   - 9
   - 10
+before_script:
+  - npx flow-typed install -s -o --ignoreDeps peer
 script:
   - yarn test
   - yarn lint
