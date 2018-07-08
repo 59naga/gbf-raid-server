@@ -1,6 +1,6 @@
 {
   "name": "gbf-raid-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "js",
   "scripts": {
     "postinstall": "path-exists flow-typed || flow-typed install -s -o --ignoreDeps peer",
