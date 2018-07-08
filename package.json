@@ -1,6 +1,6 @@
 {
   "name": "gbf-raid-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "js",
   "scripts": {
     "start": "mocha --watch",
