@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "main": "js",
   "scripts": {
-    "postinstall": "path-exists flow-typed || flow-typed install -s -o --ignoreDeps peer",
     "start": "mocha --watch",
     "test": "mocha",
     "lint": "eslint src test",
