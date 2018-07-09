@@ -13,13 +13,14 @@ export type Status = {
   },
   created_at: string,
 }
-export type Tweet = {
+export type Tweet = {|
   id: string,
   name: string,
+  memo: string,
   urlOrigin: string,
   urlProfile: string,
   createdAt: string,
-}
+|}
 export type Options ={
   prefix?: string,
   cacheLimit?: number,
@@ -33,13 +34,16 @@ export type Options ={
 }
 
 export function parse(status: Status): Tweet {
-  const id = (status.text.match(/[\d\w]{8}/) || [])[0];
+  const matches = status.text.match(/(.*?)([\d\w]{8})/) || [];
+
+  const id = matches[2];
+  const memo = (matches[1] || '').trim();
   const name = status.text.split('\n').slice(-2)[0];
   const urlOrigin = `twitter.com/${status.user.screen_name}/status/${status.id_str}`;
   const urlProfile = status.user.profile_image_url_https;
   const createdAt = moment(new Date(status.created_at)).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss');
 
-  return { id, name, urlOrigin, urlProfile, createdAt };
+  return { id, name, memo, urlOrigin, urlProfile, createdAt };
 }
 export function parseAll(statuses: Status[]): Tweet[] {
   return statuses.map(status => parse(status));
