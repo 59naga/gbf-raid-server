@@ -3,10 +3,10 @@
   "main": "index.mjs",
   "scripts": {
     "start": "node --experimental-modules index.mjs",
-    "client": "node --experimental-modules client.mjs"
+    "test": "node --experimental-modules client.mjs"
   },
   "dependencies": {
-    "gbf-raid-server": "^0.0.2",
+    "gbf-raid-server": "^0.0.3",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
