@@ -2,7 +2,10 @@
   "name": "gbf-raid-server",
   "version": "0.0.2",
   "main": "js",
-  "files": ["js", "mjs"],
+  "files": [
+    "js",
+    "mjs"
+  ],
   "scripts": {
     "start": "mocha --watch",
     "test": "mocha",
@@ -11,7 +14,8 @@
     "build": "abby build:*",
     "build:js": "babel src --out-dir js --source-maps",
     "build:js-flow": "flow-copy-source -v src js",
-    "build:mjs": "mkdirp mjs && NODE_ENV=mjs babel src/index.js --out-file mjs/index.mjs --source-maps"
+    "build:mjs": "mkdirp mjs && NODE_ENV=mjs babel src/index.js --out-file mjs/index.mjs --source-maps",
+    "postversion": "git push --follow-tags && conventional-github-releaser -p atom -r 0"
   },
   "dependencies": {
     "moment": "^2.22.2",
@@ -28,6 +32,7 @@
     "abigail": "^1.9.5",
     "babel-eslint": "^8.2.5",
     "babel-preset-power-assert": "^3.0.0-beta.1",
+    "conventional-github-releaser": "^3.1.2",
     "eslint": "^5.0.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-flowtype": "^2.49.3",
