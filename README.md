@@ -35,11 +35,11 @@ server.listen(port, async () => {
   createIoClient(`http://localhost:${port}`)
     .emit('gbf-raid-server:cache', (error, tweets) => {
       console.log(tweets);
-      // [{id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', createdAt: '2018-07-06 10:26:56'}, {...}]
+      // [{id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', memo: '毎秒チョクチェしろ', createdAt: '2018-07-06 10:26:56'}, {...}]
     })
     .on('gbf-raid-server:tweet', (tweet) => {
       console.log(tweet);
-      // {id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', createdAt: '2018-07-06 10:26:56'}
+      // {id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', memo: '毎秒チョクチェしろ', createdAt: '2018-07-06 10:26:56'}
     });
 });
 ```
@@ -100,7 +100,7 @@ const raidServer = createRaidServer('consumer_key:consumer_secret:access_token_k
 
 ```js
 parseAll(await raidServer.fetch());
-// [{id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', createdAt: '2018-07-06 10:26:56'}, {...}]
+// [{id: '451A60CE', name: 'Lv100 ティアマト・マグナ＝エア', memo: '毎秒チョクチェしろ', createdAt: '2018-07-06 10:26:56'}, {...}]
 ```
 
 開発環境
@@ -116,7 +116,7 @@ git clone git@github.com:59naga/gbf-raid-server.git
 cd gbf-raid-server
 
 yarn
-npx flow-typed install -s -o --ignoreDeps peer
+npx flow-typed install --skip
 
 yarn test
 ```
