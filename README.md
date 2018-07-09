@@ -116,8 +116,6 @@ git clone git@github.com:59naga/gbf-raid-server.git
 cd gbf-raid-server
 
 yarn
-npx flow-typed install --skip
-
 yarn test
 ```
 
