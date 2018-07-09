@@ -9,11 +9,12 @@ import statuses from './statuses';
 const port = 8080;
 
 const expectedTweet = {
-  id: '5ECB700C',
-  name: 'Lv120 グリームニル',
-  urlOrigin: 'twitter.com/ao___779/status/1015993204510822400',
-  urlProfile: 'https://pbs.twimg.com/profile_images/954332873426808832/mB5SXA3d_normal.jpg',
-  createdAt: '2018-07-09 01:17:10',
+  id: '53932FF8',
+  name: 'Lv100 ユグドラシル・マグナ',
+  memo: 'ゆぐゆぐ',
+  urlOrigin: 'twitter.com/horse_n_game_gf/status/1016184844852711424',
+  urlProfile: 'https://pbs.twimg.com/profile_images/1012078253467549696/u18ADeiA_normal.jpg',
+  createdAt: '2018-07-09 13:58:41',
 };
 
 describe('.parse', () => {
