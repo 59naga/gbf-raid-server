@@ -2,6 +2,7 @@
   "name": "gbf-raid-server",
   "version": "0.0.2",
   "main": "js",
+  "files": ["js", "mjs"],
   "scripts": {
     "start": "mocha --watch",
     "test": "mocha",
