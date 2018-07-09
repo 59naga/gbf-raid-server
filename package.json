@@ -42,7 +42,6 @@
     "flow-typed": "^2.4.0",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
-    "path-exists-cli": "^1.0.0",
     "power-assert": "^1.6.0",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"
