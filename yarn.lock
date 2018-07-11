@@ -211,9 +211,9 @@ form-data@~2.3.1:
     combined-stream "1.0.6"
     mime-types "^2.1.12"
 
-gbf-raid-server@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/gbf-raid-server/-/gbf-raid-server-0.0.3.tgz#6b7b9f511c1d622a4f9d37bab17f736f4b775117"
+gbf-raid-server@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/gbf-raid-server/-/gbf-raid-server-0.0.4.tgz#8659187ab835312fd791fcf4fad0e2bcc2dde2a8"
   dependencies:
     moment "^2.22.2"
     moment-timezone "^0.5.21"
