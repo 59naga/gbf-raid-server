@@ -36,7 +36,7 @@ export type Options ={
 export function parse(status: Status): Tweet {
   const matches = status.text.match(/(.*?)([\d\w]{8})/) || [];
 
-  const id = matches[2];
+  const id = matches[2] || '';
   const memo = (matches[1] || '').trim();
   const name = status.text.split('\n').slice(-2)[0];
   const urlOrigin = `twitter.com/${status.user.screen_name}/status/${status.id_str}`;
@@ -61,7 +61,7 @@ export class RaidServer {
         prefix: 'gbf-raid-server',
         cacheLimit: 1000,
         addStreamToCache: true,
-        keywordSearch: '"参戦ID 参加者募集！" OR "I need backup!"',
+        keywordSearch: '"参戦ID 参加者募集！" OR "Battle ID I need backup!"',
         keywordStream: '参加者募集！,I need backup!',
       },
       ...options,
@@ -95,6 +95,9 @@ export class RaidServer {
     const cacheLimit = this.opts.cacheLimit || 0;
     this.stream.on('data', (status: Status) => {
       const tweet = parse(status);
+      if (tweet.id === '' || tweet.name === '') {
+        return;
+      }
       if (addStreamToCache) {
         this.cache.unshift(tweet);
         if (this.cache.length > cacheLimit) {
