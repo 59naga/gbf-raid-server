@@ -1,13 +1,14 @@
 import assert from 'assert';
 import EventEmitter from 'events';
 import createIoClient from 'socket.io-client';
+import createIoServer from 'socket.io';
 import statuses from './statuses';
 import createRaidServer from '../src';
 
 export const createClient = port => (
   createIoClient(`http://localhost:${port}`, { forceNew: true })
 );
-export const createRaidServerTest = () => {
+export const createRaidServerTest = (server) => {
   const raidServer = createRaidServer('', {
     debug: {
       twitter: {
@@ -22,5 +23,6 @@ export const createRaidServerTest = () => {
       stream: new EventEmitter(),
     },
   });
-  return raidServer;
+
+  return raidServer.subscribe(createIoServer(server));
 };

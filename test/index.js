@@ -1,7 +1,6 @@
 // @flow
 import assert from 'assert';
 import { createServer } from 'http';
-import createIoServer from 'socket.io';
 import { parse, parseAll } from '../src';
 import { createClient, createRaidServerTest } from './helpers';
 import statuses from './statuses';
@@ -41,7 +40,7 @@ describe('RaidServer', () => {
 
   describe('.subscribe', () => {
     it('twitter.streamからdataを受信したら全てのclientへtweetイベントを送信すべき', (done) => {
-      const raidServer = createRaidServerTest().subscribe(createIoServer(server));
+      const raidServer = createRaidServerTest(server);
 
       client = createClient(port);
       client
@@ -55,10 +54,24 @@ describe('RaidServer', () => {
           done();
         });
     });
+    it('無関係のツイートを無視するべき(#1)', (done) => {
+      const raidServer = createRaidServerTest(server);
+      const expectedIgnore = Object.assign({}, statuses[0], { text: 'Lorem i need backup' });
+
+      client = createClient(port);
+      client
+        .once('connect', () => {
+          raidServer.stream.emit('data', expectedIgnore);
+          setTimeout(done, 300);
+        })
+        .on('gbf-raid-server:tweet', ({ id, name }) => {
+          done(new Error(`unexpected tweet: ${id},${name}`));
+        });
+    });
 
     describe('.setCache', () => {
       it('clientの`cache`イベントに対しcacheを返すべき', async () => {
-        const raidServer = createRaidServerTest().subscribe(createIoServer(server));
+        const raidServer = createRaidServerTest(server);
         raidServer.setCache(parseAll(await raidServer.fetch()));
 
         return new Promise((resolve) => {
