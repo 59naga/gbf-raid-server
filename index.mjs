@@ -6,8 +6,8 @@ const port = process.env.PORT || 8080;
 
 const raidServer = createRaidServer(process.env.GBFR_KEYS);
 const server = createServer((req, res) => {
-  res.writeHead(302, { Location: 'https://github.com/59naga/gbf-raid-server' });
-  res.end();
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify(raidServer.cache, null, 2));
 });
 
 server.listen(port, async () => {
