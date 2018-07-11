@@ -1,6 +1,7 @@
 // @flow
 import assert from 'assert';
 import { createServer } from 'http';
+import enableDestroy from 'server-destroy';
 import { parse, parseAll } from '../src';
 import { createClient, createRaidServerTest } from './helpers';
 import statuses from './statuses';
@@ -25,17 +26,18 @@ describe('.parse', () => {
 });
 
 describe('RaidServer', () => {
-  let server;
+  let server: any;
   let client;
   before((done) => {
     server = createServer();
+    enableDestroy(server);
     server.listen(port, done);
   });
   afterEach(() => {
     client.disconnect();
   });
-  after(() => {
-    server.close(); // not use `done()` cause sometimes not callback
+  after((done) => {
+    server.destroy(done);
   });
 
   describe('.subscribe', () => {
