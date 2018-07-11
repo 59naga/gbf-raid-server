@@ -8,9 +8,10 @@
   ],
   "scripts": {
     "start": "mocha --watch",
-    "test": "mocha",
-    "lint": "eslint src test",
-    "flow": "flow",
+    "test": "abby test:* --parse parallel",
+    "test:mocha": "mocha",
+    "test:lint": "eslint src test",
+    "test:flow": "flow",
     "build": "abby build:*",
     "build:js": "babel src --out-dir js --source-maps",
     "build:js-flow": "flow-copy-source -v src js",

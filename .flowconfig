@@ -5,6 +5,7 @@
 
 [libs]
 src/declares.js
+test/declares.js
 
 [lints]
 
