@@ -33,14 +33,10 @@ describe('.parse', () => {
 
 describe('RaidServer', () => {
   let server: any;
-  let client;
   before((done) => {
     server = createServer();
     enableDestroy(server);
     server.listen(port, done);
-  });
-  afterEach(() => {
-    client.disconnect();
   });
   after((done) => {
     server.destroy(done);
@@ -50,7 +46,7 @@ describe('RaidServer', () => {
     it('twitter.streamからdataを受信したら全てのclientへtweetイベントを送信すべき', (done) => {
       const raidServer = createRaidServerTest(server);
 
-      client = createClient(port);
+      const client = createClient(port);
       client
         .once('connect', () => {
           raidServer.stream.emit('data', statuses[0]);
@@ -66,14 +62,29 @@ describe('RaidServer', () => {
       const raidServer = createRaidServerTest(server);
       const expectedIgnore = Object.assign({}, statuses[0], { text: 'Lorem i need backup' });
 
-      client = createClient(port);
+      const client = createClient(port);
       client
         .once('connect', () => {
           raidServer.stream.emit('data', expectedIgnore);
-          setTimeout(done, 300);
+          setTimeout(done, 100);
         })
         .on('gbf-raid-server:tweet', ({ id, name }) => {
           done(new Error(`unexpected tweet: ${id},${name}`));
+        });
+    });
+    it('ツイートがもつidは一意であるべき(#3)', (done) => {
+      const raidServer = createRaidServerTest(server);
+      raidServer.stream.emit('data', statuses[0]);
+      raidServer.stream.emit('data', statuses[0]);
+      raidServer.stream.emit('data', statuses[0]);
+
+      const client = createClient(port);
+      client
+        .emit('gbf-raid-server:cache', (error, tweets) => {
+          assert(error === null);
+          assert(tweets.length === 1);
+
+          done();
         });
     });
 
@@ -83,7 +94,7 @@ describe('RaidServer', () => {
         raidServer.setCache(parseAll(await raidServer.fetch()));
 
         return new Promise((resolve) => {
-          client = createClient(port);
+          const client = createClient(port);
           client
             .emit('gbf-raid-server:cache', (error, tweets) => {
               assert(error === null);
