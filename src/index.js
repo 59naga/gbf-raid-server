@@ -51,7 +51,7 @@ export function parseAll(statuses: Status[]): Tweet[] {
 }
 
 export function unshiftUnique(origin: Tweet[], data: Tweet) {
-  const items = origin.filter(item => item.id !== data.id);
+  const items: Tweet[] = origin.filter(item => item.id !== data.id);
   items.unshift(data);
   return items;
 }
