@@ -50,6 +50,12 @@ export function parseAll(statuses: Status[]): Tweet[] {
   return statuses.map(status => parse(status));
 }
 
+export function unshiftUnique(origin: Tweet[], data: Tweet) {
+  const items = origin.filter(item => item.id !== data.id);
+  items.unshift(data);
+  return items;
+}
+
 export class RaidServer {
   cache: Tweet[];
   opts: Options;
@@ -100,7 +106,7 @@ export class RaidServer {
         return;
       }
       if (addStreamToCache) {
-        this.cache.unshift(tweet);
+        this.cache = unshiftUnique(this.cache, tweet);
         if (this.cache.length > cacheLimit) {
           this.cache.length = cacheLimit;
         }
