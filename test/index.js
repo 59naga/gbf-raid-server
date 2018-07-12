@@ -8,20 +8,26 @@ import statuses from './statuses';
 
 const port = 8080;
 
-const expectedTweet = {
+const expectedTweets = [{
   id: '53932FF8',
   name: 'Lv100 ユグドラシル・マグナ',
   memo: 'ゆぐゆぐ',
   urlOrigin: 'twitter.com/horse_n_game_gf/status/1016184844852711424',
   urlProfile: 'https://pbs.twimg.com/profile_images/1012078253467549696/u18ADeiA_normal.jpg',
   createdAt: '2018-07-09 13:58:41',
-};
+}, {
+  id: '20238320',
+  name: 'Lvl 90 Agni',
+  memo: 'HELPP PLEASEEE',
+  urlOrigin: 'twitter.com/lois66258372/status/1017197262777114624',
+  urlProfile: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png',
+  createdAt: '2018-07-09 13:58:41',
+}];
 
 describe('.parse', () => {
   it('twitter/statusオブジェクトを出力用の１次元オブジェクトに変換すべき', () => {
-    const tweet = parse(statuses[0]);
-
-    assert.deepEqual(tweet, expectedTweet);
+    assert.deepEqual(parse(statuses[0]), expectedTweets[0]);
+    assert.deepEqual(parse(statuses[1]), expectedTweets[1]);
   });
 });
 
@@ -50,8 +56,8 @@ describe('RaidServer', () => {
           raidServer.stream.emit('data', statuses[0]);
         })
         .on('gbf-raid-server:tweet', (tweet) => {
-          assert.deepEqual(tweet, expectedTweet);
-          assert.deepEqual(raidServer.cache[0], expectedTweet);
+          assert.deepEqual(tweet, expectedTweets[0]);
+          assert.deepEqual(raidServer.cache[0], expectedTweets[0]);
 
           done();
         });
