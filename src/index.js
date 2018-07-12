@@ -34,11 +34,12 @@ export type Options ={
 }
 
 export function parse(status: Status): Tweet {
-  const matches = status.text.match(/(.*?)([\d\w]{8})/) || [];
+  const texts = status.text.split('\n');
+  const matches = texts[0].match(/(.*?)([\d\w]{8}) :(?:Battle ID|参戦ID)/) || [];
 
   const id = matches[2] || '';
   const memo = (matches[1] || '').trim();
-  const name = status.text.split('\n').slice(-2)[0];
+  const name = texts.slice(-2)[0];
   const urlOrigin = `twitter.com/${status.user.screen_name}/status/${status.id_str}`;
   const urlProfile = status.user.profile_image_url_https;
   const createdAt = moment(new Date(status.created_at)).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss');
