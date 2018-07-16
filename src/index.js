@@ -39,7 +39,7 @@ export function parse(status: Status): Tweet {
 
   const id = matches[2] || '';
   const memo = (matches[1] || '').trim();
-  const name = texts.slice(-2)[0];
+  const name = texts.slice(-1)[0].match(/^https/) ? texts.slice(-2)[0] : texts.slice(-1)[0];
   const urlOrigin = `twitter.com/${status.user.screen_name}/status/${status.id_str}`;
   const urlProfile = status.user.profile_image_url_https;
   const createdAt = moment(new Date(status.created_at)).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss');
