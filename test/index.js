@@ -22,12 +22,20 @@ const expectedTweets = [{
   urlOrigin: 'twitter.com/lois66258372/status/1017197262777114624',
   urlProfile: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png',
   createdAt: '2018-07-09 13:58:41',
+}, {
+  id: '6A749D96',
+  name: 'Lv90 テスカトリポカ',
+  memo: '',
+  urlOrigin: 'twitter.com/p2ashiuragb/status/1018854363563843585',
+  urlProfile: 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png',
+  createdAt: '2018-07-16 22:58:41',
 }];
 
 describe('.parse', () => {
   it('twitter/statusオブジェクトを出力用の１次元オブジェクトに変換すべき', () => {
     assert.deepEqual(parse(statuses[0]), expectedTweets[0]);
     assert.deepEqual(parse(statuses[1]), expectedTweets[1]);
+    assert.deepEqual(parse(statuses[2]), expectedTweets[2]);
   });
 });
 
