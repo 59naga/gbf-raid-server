@@ -1,4 +1,4 @@
-https://gbf-raid-server.herokuapp.com/
+https://gbf-raid-server.herokuapp.com/, https://gbf-raid-server-jycgnnqbwh.now.sh/
 ---
 
 ```js
@@ -18,16 +18,22 @@ createIoClient('https://gbf-raid-server.herokuapp.com/')
 デプロイ方法
 ---
 
+### heroku
+
 ```bash
 git init
 heroku accounts:set gbf-raid-server
 heroku create gbf-raid-server
+heroku config:set GBFR_KEYS="consumer_key:consumer_secret:access_token_key:access_token_secret"
 git add -A
 git commit -m initial
-
-# herokuの管理画面へアクセスして環境変数をGBFR_KEYSをセット
-
 git push -u heroku master
 
 # https://gbf-raid-server.herokuapp.com/ でアクセス可能
+```
+
+### now
+
+```bash
+now -e GBFR_KEYS=consumer_key:consumer_secret:access_token_key:access_token_secret
 ```
