@@ -21,7 +21,7 @@ export type Tweet = {|
   urlProfile: string,
   createdAt: string,
 |}
-export type Options ={
+export type Options = {
   prefix?: string,
   cacheLimit?: number,
   addStreamToCache?: boolean,
@@ -34,8 +34,8 @@ export type Options ={
 }
 
 export function parse(status: Status): Tweet {
+  const matches = status.text.match(/([\s\S]*?)([\d\w]{8}) :(?:Battle ID|参戦ID)/) || [];
   const texts = status.text.split('\n');
-  const matches = texts[0].match(/(.*?)([\d\w]{8}) :(?:Battle ID|参戦ID)/) || [];
 
   const id = matches[2] || '';
   const memo = (matches[1] || '').trim();
