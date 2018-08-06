@@ -9,6 +9,13 @@ import statuses from './statuses';
 const port = 8080;
 
 const expectedTweets = [{
+  id: '72562EB8',
+  name: 'Lv100 ユグドラシル・マグナ',
+  memo: 'このジングルは…タキシードクイズ！\nさぁ今夜もやって参りました、紳士による紳士のためのシルクハットなお時間　ザ・タキシードクイズ！テレビの前の妖魔よ聞',
+  urlOrigin: 'twitter.com/horse_n_game_gf/status/1026514864636747777',
+  urlProfile: 'https://pbs.twimg.com/profile_images/1012078253467549696/u18ADeiA_normal.jpg',
+  createdAt: '2018-08-07 02:06:30',
+}, {
   id: '53932FF8',
   name: 'Lv100 ユグドラシル・マグナ',
   memo: 'ゆぐゆぐ',
