@@ -1,4 +1,6 @@
 import http from "http";
+import { createServer as createSecureServer } from "https";
+import { readFileSync } from "fs";
 import createIoServer from "socket.io";
 import createRaidServer, { parseAll } from "gbf-raid-server/mjs";
 
@@ -14,10 +16,14 @@ const raidServer = createRaidServer(process.env.GBFR_KEYS, {
     }, 30 * 60 * 1000);
   }
 });
-const server = http.createServer((req, res) => {
+const listener = (req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(raidServer.cache, null, 2));
-});
+};
+
+const key = readFileSync(".key.pem");
+const cert = readFileSync(".cert.pem");
+const server = createSecureServer({ key, cert }, listener);
 
 server.listen(port, async () => {
   raidServer.setCache(parseAll(await raidServer.fetch()));

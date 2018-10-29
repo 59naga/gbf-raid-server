@@ -6,7 +6,10 @@
     "test": "node --experimental-modules client.mjs"
   },
   "dependencies": {
-    "gbf-raid-server": "^0.0.8",
+    "eastern": "^1.1.1",
+    "eastern-cli": "^0.0.2",
+    "esm": "^3.0.84",
+    "gbf-raid-server": "^0.0.9",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
