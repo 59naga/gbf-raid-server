@@ -27,6 +27,7 @@ export type Options = {
   addStreamToCache?: boolean,
   keywordSearch?: string,
   keywordStream?: string,
+  onTweet?: Function,
   debug?: {
     twitter: Twitter,
     stream: EventEmitter,
@@ -70,6 +71,7 @@ export class RaidServer {
         addStreamToCache: true,
         keywordSearch: '"参戦ID 参加者募集！" OR "Battle ID I need backup!"',
         keywordStream: '参加者募集！,I need backup!',
+        onTweet: () => {},
       },
       ...options,
     };
@@ -111,7 +113,11 @@ export class RaidServer {
           this.cache.length = cacheLimit;
         }
       }
+
       io.emit(`${prefix}:tweet`, tweet);
+      if (this.opts.onTweet) {
+        this.opts.onTweet(tweet);
+      }
     });
     return this;
   }

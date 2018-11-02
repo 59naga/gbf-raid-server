@@ -106,6 +106,13 @@ describe('RaidServer', () => {
           done();
         });
     });
+    it('onTweet: tweetを受け取るたびにパース済みのtweetをコールバックすべき', (done) => {
+      const raidServer = createRaidServerTest(server, { onTweet: (tweet) => {
+        assert(statuses[0].text.match(tweet.memo));
+        done();
+      } });
+      raidServer.stream.emit('data', statuses[0]);
+    });
 
     describe('.setCache', () => {
       it('clientの`cache`イベントに対しcacheを返すべき', async () => {

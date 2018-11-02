@@ -8,8 +8,9 @@ import createRaidServer from '../src';
 export const createClient = port => (
   createIoClient(`http://localhost:${port}`, { forceNew: true })
 );
-export const createRaidServerTest = (server) => {
+export const createRaidServerTest = (server, opts = {}) => {
   const raidServer = createRaidServer('', {
+    ...opts,
     debug: {
       twitter: {
         get(endpoint, params, callback) {
