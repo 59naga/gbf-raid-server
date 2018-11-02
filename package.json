@@ -16,7 +16,7 @@
     "build:js": "babel src --out-dir js --source-maps",
     "build:js-flow": "flow-copy-source -v src js",
     "build:mjs": "mkdirp mjs && NODE_ENV=mjs babel src/index.js --out-file mjs/index.mjs --source-maps",
-    "postversion": "git push --follow-tags && conventional-github-releaser -p atom -r 0"
+    "postversion": "git push --follow-tags && conventional-github-releaser -p atom"
   },
   "dependencies": {
     "moment": "^2.22.2",
