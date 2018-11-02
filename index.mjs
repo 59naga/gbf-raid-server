@@ -11,7 +11,7 @@ const raidServer = createRaidServer(process.env.GBFR_KEYS, {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       throw new Error("stream timed out, rebooting");
-    }, 30 * 60 * 1000);
+    }, 10 * 60 * 1000);
   }
 });
 const server = http.createServer((req, res) => {
