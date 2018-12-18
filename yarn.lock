@@ -596,10 +596,10 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-gbf-raid-server@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/gbf-raid-server/-/gbf-raid-server-0.0.9.tgz#b95f0e736145e8b1fb6e969767423256a7325ac4"
-  integrity sha512-2PV7ZRiWnTAP9vKPEhrU5aZMh0lydTb8wQmO2I4f73ItJU4+QawwmOkSL2yfhAjNNnpAMsNjqKWud7A/plC6+A==
+gbf-raid-server@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/gbf-raid-server/-/gbf-raid-server-0.1.0.tgz#3020856878829e7c3f4ca9793afa97ec432a8215"
+  integrity sha512-AKuiNT++Zzk8A2+gpDkqKWgmMH6J+W3rUTmPqWWFrV8FFjZOxK1c9Zr59JZKV/tP82tUDuqN0VsUnTHee3ztwA==
   dependencies:
     moment "^2.22.2"
     moment-timezone "^0.5.21"

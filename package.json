@@ -9,7 +9,7 @@
     "eastern": "^1.1.1",
     "eastern-cli": "^0.0.2",
     "esm": "^3.0.84",
-    "gbf-raid-server": "^0.0.9",
+    "gbf-raid-server": "^0.1.0",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
