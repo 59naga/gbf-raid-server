@@ -17,6 +17,7 @@ export type Tweet = {|
   id: string,
   name: string,
   memo: string,
+  urlImage: string,
   urlOrigin: string,
   urlProfile: string,
   createdAt: string,
@@ -41,11 +42,12 @@ export function parse(status: Status): Tweet {
   const id = matches[2] || '';
   const memo = (matches[1] || '').trim();
   const name = texts.slice(-1)[0].match(/^https/) ? texts.slice(-2)[0] : texts.slice(-1)[0];
+  const urlImage = texts[texts.length - 1].match(/^https/) ? texts[texts.length - 1] : '';
   const urlOrigin = `twitter.com/${status.user.screen_name}/status/${status.id_str}`;
   const urlProfile = status.user.profile_image_url_https;
   const createdAt = moment(new Date(status.created_at)).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss');
 
-  return { id, name, memo, urlOrigin, urlProfile, createdAt };
+  return { id, name, memo, urlImage, urlOrigin, urlProfile, createdAt };
 }
 export function parseAll(statuses: Status[]): Tweet[] {
   return statuses.map(status => parse(status));
