@@ -5,6 +5,7 @@ import createRaidServer, { parseAll } from "gbf-raid-server/mjs";
 
 import express from "express";
 import request from "request";
+import cors from "cors";
 
 const port = process.env.PORT || 8080;
 
@@ -20,6 +21,7 @@ const raidServer = createRaidServer(process.env.GBFR_KEYS, {
 });
 
 const app = express();
+app.use(cors());
 app.get("/", (req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(raidServer.cache, null, 2));

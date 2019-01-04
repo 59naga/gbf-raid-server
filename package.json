@@ -6,6 +6,7 @@
     "test": "node --experimental-modules client.mjs"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "esm": "^3.0.84",
     "express": "^4.16.4",
     "gbf-raid-server": "^0.1.0",
