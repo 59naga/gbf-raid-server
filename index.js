@@ -42,7 +42,7 @@ const key = readFileSync(".key.pem");
 const cert = readFileSync(".cert.pem");
 const server = createSecureServer({ key, cert }, app);
 
-server.listen(port, async () => {
+const listener = server.listen(port, async () => {
   raidServer.setCache(parseAll(await raidServer.fetch()));
   raidServer.subscribe(createIoServer(server));
 
