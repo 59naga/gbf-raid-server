@@ -55,7 +55,8 @@ const listener = server.listen(port, async () => {
 if (port == 443) {
   createServer(
     express().all("*", function(request, response) {
-      response.redirect(`https://${request.hostname}${request.url}`);
+      response.redirect(302, `https://gbf-raid-stream.now.sh`);
+      // response.redirect(302, `https://${request.hostname}${request.url}`);
     })
   ).listen(80);
 }
