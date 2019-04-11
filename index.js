@@ -1,3 +1,4 @@
+import { createServer } from "http";
 import { createServer as createSecureServer } from "https";
 import { readFileSync } from "fs";
 import createIoServer from "socket.io";
@@ -50,3 +51,11 @@ const listener = server.listen(port, async () => {
   const schema = server.key ? "https" : "http";
   console.log(`${schema}://${address}:${port}`);
 });
+
+if (port == 443) {
+  createServer(
+    express().all("*", function(request, response) {
+      response.redirect(`https://${request.hostname}${request.url}`);
+    })
+  ).listen(80);
+}
